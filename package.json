@@ -1,0 +1,39 @@
+{
+  "name": "videomp3",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "100% client-side Video to MP3 and WAV audio extractor built with Astro, TypeScript, Tailwind CSS, Web Audio API, and WebAssembly.",
+  "author": "Kishara Dilshan <kisharadilshan007@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Kishara007/extractaudio.git"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "typecheck": "astro check && tsc --noEmit",
+    "deploy": "astro build && wrangler pages deploy dist --project-name=videomp3 --branch=main"
+  },
+  "dependencies": {
+    "@astrojs/react": "^7.1.9",
+    "@breezystack/lamejs": "^1.2.7",
+    "@ffmpeg/ffmpeg": "^0.12.15",
+    "@ffmpeg/util": "^0.12.2",
+    "@tailwindcss/vite": "^4.3.5",
+    "astro": "^7.4.13",
+    "lucide-react": "^1.77.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "tailwindcss": "^4.3.5"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.12",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "typescript": "^6.0.3"
+  }
+}

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://videomp3.pages.dev/sitemap.xml

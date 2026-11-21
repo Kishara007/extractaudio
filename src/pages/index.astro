@@ -1,0 +1,300 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import VideoToMp3Tool from '../components/VideoToMp3Tool';
+import en from '../i18n/en.json';
+
+const softwareSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Video to MP3 Converter',
+  url: 'https://videomp3.pages.dev/',
+  applicationCategory: 'MultimediaApplication',
+  operatingSystem: 'Any (Web Browser)',
+  browserRequirements: 'Requires Web Audio API and WebAssembly support',
+  description: en.seo.home.description,
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'USD',
+  },
+  author: {
+    '@type': 'Person',
+    name: 'Kishara Dilshan',
+    email: 'kisharadilshan007@gmail.com',
+    url: 'https://videomp3.pages.dev/hire-me',
+  },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: en.homeSections.faq1Q,
+      acceptedAnswer: { '@type': 'Answer', text: en.homeSections.faq1A },
+    },
+    {
+      '@type': 'Question',
+      name: en.homeSections.faq2Q,
+      acceptedAnswer: { '@type': 'Answer', text: en.homeSections.faq2A },
+    },
+    {
+      '@type': 'Question',
+      name: en.homeSections.faq3Q,
+      acceptedAnswer: { '@type': 'Answer', text: en.homeSections.faq3A },
+    },
+    {
+      '@type': 'Question',
+      name: en.homeSections.faq4Q,
+      acceptedAnswer: { '@type': 'Answer', text: en.homeSections.faq4A },
+    },
+    {
+      '@type': 'Question',
+      name: en.homeSections.faq5Q,
+      acceptedAnswer: { '@type': 'Answer', text: en.homeSections.faq5A },
+    },
+  ],
+};
+---
+
+<BaseLayout
+  title={en.seo.home.title}
+  description={en.seo.home.description}
+  canonicalPath="/"
+  pageId="home"
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(softwareSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  </Fragment>
+
+  <!-- First Viewport: Ultra-Minimal Hero + Focal Converter Workspace -->
+  <section class="min-h-[calc(100vh-4rem)] flex flex-col justify-center px-4 sm:px-6 py-6 sm:py-10">
+    <div class="mx-auto w-full max-w-4xl">
+      <div class="text-center max-w-2xl mx-auto mb-6 sm:mb-8">
+        <h1
+          data-i18n="hero.h1"
+          class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#27374D] dark:text-[#DDE6ED] leading-[1.15]"
+        >
+          {en.hero.h1}
+        </h1>
+        <p
+          data-i18n="hero.subtitle"
+          class="mt-3 sm:mt-4 text-sm sm:text-base lg:text-lg text-[#526D82] dark:text-[#9DB2BF] leading-relaxed"
+        >
+          {en.hero.subtitle}
+        </p>
+      </div>
+
+      <VideoToMp3Tool client:load />
+    </div>
+  </section>
+
+  <!-- Below-the-Fold Helpful Content -->
+  <div class="mx-auto max-w-5xl px-4 sm:px-6 space-y-16 sm:space-y-20 pt-8 sm:pt-12">
+    <!-- 3-Step Workflow -->
+    <section aria-labelledby="steps-heading">
+      <h2
+        id="steps-heading"
+        data-i18n="homeSections.stepsTitle"
+        class="text-2xl sm:text-3xl font-extrabold tracking-tight text-center text-[#27374D] dark:text-[#DDE6ED] mb-8"
+      >
+        {en.homeSections.stepsTitle}
+      </h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <article class="focal-card rounded-2xl p-6">
+          <h3
+            data-i18n="homeSections.step1Title"
+            class="text-lg font-bold text-[#27374D] dark:text-[#DDE6ED]"
+          >
+            {en.homeSections.step1Title}
+          </h3>
+          <p
+            data-i18n="homeSections.step1Body"
+            class="mt-2.5 text-sm leading-relaxed text-[#526D82] dark:text-[#9DB2BF]"
+          >
+            {en.homeSections.step1Body}
+          </p>
+        </article>
+
+        <article class="focal-card rounded-2xl p-6">
+          <h3
+            data-i18n="homeSections.step2Title"
+            class="text-lg font-bold text-[#27374D] dark:text-[#DDE6ED]"
+          >
+            {en.homeSections.step2Title}
+          </h3>
+          <p
+            data-i18n="homeSections.step2Body"
+            class="mt-2.5 text-sm leading-relaxed text-[#526D82] dark:text-[#9DB2BF]"
+          >
+            {en.homeSections.step2Body}
+          </p>
+        </article>
+
+        <article class="focal-card rounded-2xl p-6">
+          <h3
+            data-i18n="homeSections.step3Title"
+            class="text-lg font-bold text-[#27374D] dark:text-[#DDE6ED]"
+          >
+            {en.homeSections.step3Title}
+          </h3>
+          <p
+            data-i18n="homeSections.step3Body"
+            class="mt-2.5 text-sm leading-relaxed text-[#526D82] dark:text-[#9DB2BF]"
+          >
+            {en.homeSections.step3Body}
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Core Browser Extraction Benefits -->
+    <section aria-labelledby="features-heading">
+      <h2
+        id="features-heading"
+        data-i18n="homeSections.featuresTitle"
+        class="text-2xl sm:text-3xl font-extrabold tracking-tight text-center text-[#27374D] dark:text-[#DDE6ED] mb-8"
+      >
+        {en.homeSections.featuresTitle}
+      </h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <article class="focal-card rounded-2xl p-6">
+          <h3
+            data-i18n="homeSections.feature1Title"
+            class="text-lg font-bold text-[#27374D] dark:text-[#DDE6ED]"
+          >
+            {en.homeSections.feature1Title}
+          </h3>
+          <p
+            data-i18n="homeSections.feature1Body"
+            class="mt-2.5 text-sm leading-relaxed text-[#526D82] dark:text-[#9DB2BF]"
+          >
+            {en.homeSections.feature1Body}
+          </p>
+        </article>
+
+        <article class="focal-card rounded-2xl p-6">
+          <h3
+            data-i18n="homeSections.feature2Title"
+            class="text-lg font-bold text-[#27374D] dark:text-[#DDE6ED]"
+          >
+            {en.homeSections.feature2Title}
+          </h3>
+          <p
+            data-i18n="homeSections.feature2Body"
+            class="mt-2.5 text-sm leading-relaxed text-[#526D82] dark:text-[#9DB2BF]"
+          >
+            {en.homeSections.feature2Body}
+          </p>
+        </article>
+
+        <article class="focal-card rounded-2xl p-6">
+          <h3
+            data-i18n="homeSections.feature3Title"
+            class="text-lg font-bold text-[#27374D] dark:text-[#DDE6ED]"
+          >
+            {en.homeSections.feature3Title}
+          </h3>
+          <p
+            data-i18n="homeSections.feature3Body"
+            class="mt-2.5 text-sm leading-relaxed text-[#526D82] dark:text-[#9DB2BF]"
+          >
+            {en.homeSections.feature3Body}
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- FAQ Section matching FAQPage Schema -->
+    <section aria-labelledby="faq-heading" class="max-w-3xl mx-auto">
+      <h2
+        id="faq-heading"
+        data-i18n="homeSections.faqTitle"
+        class="text-2xl sm:text-3xl font-extrabold tracking-tight text-center text-[#27374D] dark:text-[#DDE6ED] mb-8"
+      >
+        {en.homeSections.faqTitle}
+      </h2>
+
+      <div class="space-y-3.5">
+        <details class="focal-card rounded-2xl p-5 group" open>
+          <summary
+            data-i18n="homeSections.faq1Q"
+            class="cursor-pointer list-none font-bold text-base sm:text-lg text-[#27374D] dark:text-[#DDE6ED] flex items-center justify-between gap-4"
+          >
+            {en.homeSections.faq1Q}
+          </summary>
+          <p
+            data-i18n="homeSections.faq1A"
+            class="mt-3 text-sm leading-relaxed text-[#526D82] dark:text-[#9DB2BF]"
+          >
+            {en.homeSections.faq1A}
+          </p>
+        </details>
+
+        <details class="focal-card rounded-2xl p-5 group">
+          <summary
+            data-i18n="homeSections.faq2Q"
+            class="cursor-pointer list-none font-bold text-base sm:text-lg text-[#27374D] dark:text-[#DDE6ED]"
+          >
+            {en.homeSections.faq2Q}
+          </summary>
+          <p
+            data-i18n="homeSections.faq2A"
+            class="mt-3 text-sm leading-relaxed text-[#526D82] dark:text-[#9DB2BF]"
+          >
+            {en.homeSections.faq2A}
+          </p>
+        </details>
+
+        <details class="focal-card rounded-2xl p-5 group">
+          <summary
+            data-i18n="homeSections.faq3Q"
+            class="cursor-pointer list-none font-bold text-base sm:text-lg text-[#27374D] dark:text-[#DDE6ED]"
+          >
+            {en.homeSections.faq3Q}
+          </summary>
+          <p
+            data-i18n="homeSections.faq3A"
+            class="mt-3 text-sm leading-relaxed text-[#526D82] dark:text-[#9DB2BF]"
+          >
+            {en.homeSections.faq3A}
+          </p>
+        </details>
+
+        <details class="focal-card rounded-2xl p-5 group">
+          <summary
+            data-i18n="homeSections.faq4Q"
+            class="cursor-pointer list-none font-bold text-base sm:text-lg text-[#27374D] dark:text-[#DDE6ED]"
+          >
+            {en.homeSections.faq4Q}
+          </summary>
+          <p
+            data-i18n="homeSections.faq4A"
+            class="mt-3 text-sm leading-relaxed text-[#526D82] dark:text-[#9DB2BF]"
+          >
+            {en.homeSections.faq4A}
+          </p>
+        </details>
+
+        <details class="focal-card rounded-2xl p-5 group">
+          <summary
+            data-i18n="homeSections.faq5Q"
+            class="cursor-pointer list-none font-bold text-base sm:text-lg text-[#27374D] dark:text-[#DDE6ED]"
+          >
+            {en.homeSections.faq5Q}
+          </summary>
+          <p
+            data-i18n="homeSections.faq5A"
+            class="mt-3 text-sm leading-relaxed text-[#526D82] dark:text-[#9DB2BF]"
+          >
+            {en.homeSections.faq5A}
+          </p>
+        </details>
+      </div>
+    </section>
+  </div>
+</BaseLayout>

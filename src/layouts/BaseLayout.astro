@@ -1,0 +1,124 @@
+---
+import '../styles/global.css';
+import Navbar from '../components/Navbar';
+import SupportModal from '../components/SupportModal';
+import en from '../i18n/en.json';
+
+interface Props {
+  title: string;
+  description: string;
+  canonicalPath: string;
+  pageId: 'home' | 'howToUse' | 'hireMe';
+}
+
+const { title, description, canonicalPath, pageId } = Astro.props;
+const siteOrigin = 'https://videomp3.pages.dev';
+const canonicalUrl = canonicalPath === '/' ? `${siteOrigin}/` : `${siteOrigin}${canonicalPath}`;
+const ogImageUrl = `${siteOrigin}/og-image.png`;
+---
+
+<!doctype html>
+<html lang="en" data-page={pageId}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Favicon & App Icons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="theme-color" content="#DDE6ED" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Video to MP3 Converter" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+
+    <!-- Inline Theme Initializer (Default: Light, prevents FOUT) -->
+    <script is:inline>
+      (function () {
+        try {
+          var savedTheme = window.localStorage.getItem('theme');
+          if (savedTheme === 'dark') {
+            document.documentElement.classList.add('dark');
+            var metaTheme = document.querySelector('meta[name="theme-color"]');
+            if (metaTheme) metaTheme.setAttribute('content', '#27374D');
+          } else {
+            document.documentElement.classList.remove('dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
+
+    <!-- Google Tag Manager & GA4 -->
+    <script is:inline async src="https://www.googletagmanager.com/gtm.js?id=GTM-NKXJLPMQ"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+    </script>
+    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-D9LDYBDNR9"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'G-D9LDYBDNR9');
+    </script>
+
+    <slot name="head" />
+  </head>
+
+  <body class="flex flex-col min-h-screen antialiased selection:bg-[#9DB2BF]/40 selection:text-[#27374D] dark:selection:text-[#DDE6ED]">
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded-xl focus:bg-[#27374D] focus:px-4 focus:py-2 focus:text-sm focus:font-bold focus:text-white"
+    >
+      Skip to main content
+    </a>
+
+    <Navbar currentPath={canonicalPath} client:load />
+
+    <main id="main-content" class="flex-1">
+      <slot />
+    </main>
+
+    <SupportModal client:load />
+
+    <footer class="mt-16 border-t border-[#526D82]/15 dark:border-[#9DB2BF]/15 py-8 px-4 sm:px-6 text-center text-xs sm:text-sm text-[#526D82] dark:text-[#9DB2BF]">
+      <div class="mx-auto max-w-5xl flex flex-col sm:flex-row items-center justify-between gap-3">
+        <p>
+          <span data-i18n="footer.builtBy">{en.footer.builtBy}</span>{' '}
+          <a
+            href="/hire-me"
+            class="font-semibold text-[#27374D] dark:text-[#DDE6ED] underline decoration-[#9DB2BF] underline-offset-4 hover:text-[#526D82] dark:hover:text-[#9DB2BF] transition-colors"
+          >
+            Kishara Dilshan
+          </a>
+        </p>
+        <p data-i18n="footer.privacyNote">{en.footer.privacyNote}</p>
+      </div>
+    </footer>
+
+    <script>
+      import { applyStaticTranslations, getStoredLocale } from '../i18n';
+
+      const initialLocale = getStoredLocale();
+      if (initialLocale !== 'en') {
+        applyStaticTranslations(initialLocale);
+      }
+    </script>
+  </body>
+</html>

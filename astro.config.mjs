@@ -1,0 +1,23 @@
+import { defineConfig } from 'astro/config';
+import react from '@astrojs/react';
+import tailwindcss from '@tailwindcss/vite';
+
+export default defineConfig({
+  site: 'https://videomp3.pages.dev',
+  output: 'static',
+  trailingSlash: 'never',
+  compressHTML: true,
+  build: {
+    format: 'file',
+  },
+  integrations: [react()],
+  vite: {
+    plugins: [tailwindcss()],
+    optimizeDeps: {
+      exclude: ['@ffmpeg/ffmpeg', '@ffmpeg/util'],
+    },
+    worker: {
+      format: 'es',
+    },
+  },
+});
